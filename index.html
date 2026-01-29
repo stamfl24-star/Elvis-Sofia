@@ -58,11 +58,11 @@
     <h1>Elvis & Σοφία 💍</h1>
     <p>Με μεγάλη χαρά σας προσκαλούμε στον γάμο μας! Παρακαλούμε ενημερώστε μας αν θα παρευρεθείτε.</p>
     
-    <input type="text" id="name" placeholder="Γράψε το όνομά σου" />
+    <input type="text" id="name" placeholder="Παρακαλώ γράψτε το ονοματεπώνυμο σας." />
 
     <div>
-      <button class="yes" onclick="sendAnswer('Ναι, θα είμαι εκεί')">💕 Ναι</button>
-      <button class="no" onclick="sendAnswer('Δυστυχώς όχι')">🤍 Όχι</button>
+      <button class="yes" onclick="sendAnswer('Ναι, θα είμαι εκεί!')">Ναι</button>
+      <button class="no" onclick="sendAnswer('Δυστυχώς όχι.')">Όχι</button>
     </div>
 
     <div class="message" id="message"></div>
@@ -79,7 +79,7 @@
     const messageEl = document.getElementById('message');
 
     if (name === '') {
-      messageEl.innerText = 'Παρακαλώ γράψε το όνομά σου.';
+      messageEl.innerText = 'Παρακαλώ γράψτε το ονοματεπώνυμο σας.';
     
       // ❗ Αν δεν έχει όνομα, ξανα-ξεκλειδώνουμε
       document.querySelectorAll('button').forEach(btn => btn.disabled = false);
@@ -122,6 +122,7 @@
   </script>
 </body>
 </html>
+
 
 
 
