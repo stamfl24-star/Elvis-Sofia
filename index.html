@@ -6,139 +6,162 @@
   <meta name="color-scheme" content="light" />
   <title>Προσκλητήριο Γάμου</title>
 
-  <!-- Elegant calligraphy + classic serif -->
+  <!-- Calligraphy + classic serif + clean sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg: #ffffff;
-      --ink: #141414;
-      --muted: rgba(20,20,20,.62);
-      --hair: rgba(20,20,20,.14);
-      --soft: rgba(20,20,20,.06);
-      --max: 760px;
+      --bg: #f3f0eb;         /* outer background like photo */
+      --paper: #ffffff;      /* invitation paper */
+      --ink: #171615;
+      --muted: rgba(23,22,21,.64);
+      --hair: rgba(23,22,21,.14);
+      --frame: rgba(90,70,60,.78);   /* frame color (warm brown) */
+      --max: 980px;
+
       --script: "Great Vibes", "Brush Script MT", "Segoe Script", cursive;
       --serif: "Cormorant Garamond","Georgia","Times New Roman",serif;
       --sans: "Inter","Arial","Helvetica",sans-serif;
     }
 
-    *{ box-sizing: border-box; }
-    html, body{ height: 100%; }
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
     body{
       margin:0;
+      color:var(--ink);
       background: var(--bg);
-      color: var(--ink);
+      font-family: var(--serif);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      font-family: var(--serif);
     }
 
-    /* subtle paper light */
+    /* subtle textured background */
     body::before{
       content:"";
       position: fixed;
-      inset: 0;
+      inset:0;
       pointer-events:none;
       background:
-        radial-gradient(1200px 520px at 12% -10%, rgba(0,0,0,.045), transparent 62%),
-        radial-gradient(900px 520px at 92% 8%, rgba(0,0,0,.035), transparent 60%),
-        radial-gradient(800px 480px at 30% 115%, rgba(0,0,0,.03), transparent 62%);
-      opacity: .95;
+        radial-gradient(1200px 620px at 10% -15%, rgba(0,0,0,.06), transparent 62%),
+        radial-gradient(1000px 620px at 90% 0%, rgba(0,0,0,.05), transparent 62%),
+        radial-gradient(900px 520px at 40% 115%, rgba(0,0,0,.04), transparent 65%),
+        repeating-linear-gradient(0deg, rgba(255,255,255,.04) 0 2px, transparent 2px 8px);
+      opacity:.55;
     }
 
-    .page{ position: relative; min-height: 100%; }
-
-    /* HERO (image + soft fade) */
-    .hero{
+    .wrap{
       position: relative;
-      height: min(54vh, 560px);
-      min-height: 360px;
-      width: 100%;
+      min-height:100%;
       display:flex;
-      align-items:flex-end;
+      align-items:center;
       justify-content:center;
+      padding: 36px 14px;
+    }
+
+    /* Invitation sheet (big frame) */
+    .sheet{
+      width: min(var(--max), 100%);
+      background: var(--paper);
+      border: 4px solid var(--frame);
+      box-shadow: 0 25px 65px rgba(0,0,0,.18);
+      position: relative;
       overflow:hidden;
     }
-    .hero img{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      object-fit: cover;
-      transform: scale(1.02);
-      filter: contrast(1.02) saturate(.98);
-    }
-    .hero::after{
+
+    /* inner border like printed invitation */
+    .sheet::before{
       content:"";
       position:absolute;
-      inset:0;
-      background: linear-gradient(to bottom,
-        rgba(255,255,255,.10),
-        rgba(255,255,255,.75) 72%,
-        rgba(255,255,255,.98));
+      inset: 18px;
+      border: 1px solid rgba(90,70,60,.35);
+      pointer-events:none;
     }
 
-    .hero-inner{
-      width: min(var(--max), 92vw);
-      text-align:center;
-      padding: 0 10px 22px;
+    /* floral line-art corner (pure CSS with inline SVG bg) */
+    .floral{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      opacity:.45;
+      background-repeat:no-repeat;
+      background-size: 520px auto;
+      background-position: -60px -40px;
+      background-image: url("data:image/svg+xml;charset=utf-8,\
+      <svg xmlns='http://www.w3.org/2000/svg' width='900' height='600' viewBox='0 0 900 600'>\
+        <g fill='none' stroke='%23b08a6a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' opacity='0.85'>\
+          <path d='M60 220c70-80 160-90 240-30 55 40 120 70 220 55 80-12 150-50 240-10'/>\
+          <path d='M120 180c20 35 15 70-10 95'/>\
+          <path d='M170 150c30 45 20 95-20 130'/>\
+          <path d='M250 160c-20 30-15 60 10 90'/>\
+          <path d='M310 190c35 10 70 5 100-20'/>\
+          <path d='M395 175c25 30 25 60 5 90'/>\
+          <path d='M80 250c40 10 65 35 80 75'/>\
+          <path d='M150 250c20 15 30 35 30 60'/>\
+          <path d='M210 230c18 8 30 22 35 40'/>\
+          <path d='M430 210c30-18 55-20 85-5'/>\
+          <path d='M510 215c25 20 35 40 35 70'/>\
+          <path d='M610 195c40 5 70-8 95-38'/>\
+          <path d='M700 200c25 20 40 45 45 75'/>\
+        </g>\
+      </svg>");
+    }
+
+    /* content area */
+    .content{
       position:relative;
       z-index:1;
+      padding: 54px 22px 48px;
+      text-align:center;
     }
 
-    .smallcaps{
-      display:inline-block;
-      padding: 10px 14px;
-      border: 1px solid rgba(20,20,20,.18);
+    /* push text slightly higher (your request) */
+    @media (min-width: 720px){
+      .content{ padding-top: 48px; }
+    }
+
+    .monogram{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 10px 16px;
       border-radius: 999px;
-      background: rgba(255,255,255,.68);
-      backdrop-filter: blur(6px);
-      letter-spacing: .16em;
-      font-weight: 500;
+      border: 1px solid rgba(23,22,21,.18);
+      background: rgba(255,255,255,.86);
       font-family: var(--sans);
+      letter-spacing: .20em;
       font-size: .86rem;
       text-transform: uppercase;
-      color: rgba(20,20,20,.78);
+      color: rgba(23,22,21,.78);
     }
 
-    /* Names: calligraphy, NOT bold */
     h1{
-      margin: 16px 0 6px;
+      margin: 18px 0 10px;
       font-family: var(--script);
-      font-size: clamp(50px, 7vw, 86px);
-      font-weight: 400;          /* NOT bold */
+      font-weight: 400; /* NOT bold */
       letter-spacing: .01em;
-      line-height: 1.05;
+      line-height: 1.02;
+      font-size: clamp(54px, 6.8vw, 92px);
     }
 
     .date{
-      margin: 0 auto;
-      color: rgba(20,20,20,.74);
-      font-size: 1.08rem;
-      line-height: 1.75;
+      margin: 0;
       font-family: var(--serif);
-    }
-
-    main{
-      width: min(var(--max), 92vw);
-      margin: 0 auto;
-      padding: 24px 0 56px;
-      text-align:center;
-      position:relative;
-      z-index:1;
+      font-size: 1.12rem;
+      color: rgba(23,22,21,.70);
+      letter-spacing: .08em;
     }
 
     .ornament{
-      margin: 18px auto 20px;
-      width: min(520px, 84%);
+      margin: 22px auto 22px;
+      width: min(560px, 84%);
       display:flex;
       align-items:center;
       gap: 14px;
       justify-content:center;
+      color: rgba(23,22,21,.40);
       user-select:none;
-      color: rgba(20,20,20,.38);
     }
     .ornament::before,
     .ornament::after{
@@ -147,105 +170,108 @@
       flex:1;
       background: linear-gradient(90deg, transparent, var(--hair), transparent);
     }
-    .ornament span{
-      font-size: 1.05rem;
-      letter-spacing: .14em;
-    }
+    .ornament span{ letter-spacing:.14em; }
 
     .intro{
       margin: 0 auto;
-      max-width: 68ch;
+      max-width: 70ch;
       color: var(--muted);
-      font-size: 1.14rem;
-      line-height: 1.95;
-      padding: 2px 0 0;
+      font-size: 1.18rem;
+      line-height: 2.0;
     }
 
     .section{
-      margin-top: 18px;
+      margin-top: 22px;
     }
-
     .section-title{
       margin: 0 0 10px;
       font-family: var(--sans);
       font-size: .9rem;
       letter-spacing: .28em;
       text-transform: uppercase;
-      color: rgba(20,20,20,.72);
       font-weight: 600;
+      color: rgba(23,22,21,.70);
     }
 
-    /* Family style (like wedding invitation lists) */
-    .family-lines{
+    .lines{
       margin: 0 auto;
-      max-width: 560px;
-      font-size: 1.18rem;
-      line-height: 2.0;
-      color: rgba(20,20,20,.86);
+      max-width: 620px;
+      font-size: 1.22rem;
+      line-height: 2.05;
+      color: rgba(23,22,21,.88);
     }
-    .family-lines .soft{
-      color: rgba(20,20,20,.62);
-      font-size: 1.02rem;
-      line-height: 1.8;
-      margin-top: 4px;
-      font-family: var(--serif);
+    .soft{
+      margin-top: 6px;
+      font-size: 1.06rem;
+      line-height: 1.85;
+      color: rgba(23,22,21,.62);
     }
 
-    /* Location */
-    .place-name{
-      font-size: 1.18rem;
-      color: rgba(20,20,20,.86);
-      line-height: 1.8;
+    /* map preview */
+    .map-wrap{
+      width: min(760px, 92%);
+      margin: 14px auto 0;
+      border: 1px solid rgba(23,22,21,.18);
+      border-radius: 14px;
+      overflow:hidden;
+      background: rgba(0,0,0,.02);
+    }
+    .map{
+      width:100%;
+      height: 260px;
+      border: 0;
+      display:block;
+    }
+    .map-actions{
+      display:flex;
+      gap: 10px;
+      justify-content:center;
+      flex-wrap: wrap;
+      padding: 12px 12px 0;
     }
     .maplink{
       display:inline-block;
-      margin-top: 10px;
       font-family: var(--sans);
-      text-decoration: none;
-      color: rgba(20,20,20,.92);
-      border-bottom: 1px solid rgba(20,20,20,.28);
+      text-decoration:none;
+      color: rgba(23,22,21,.92);
+      border-bottom: 1px solid rgba(23,22,21,.28);
       padding-bottom: 2px;
-      width: fit-content;
     }
 
-    /* RSVP (clean, elegant) */
-    .rsvp{
-      margin-top: 28px;
-    }
+    /* RSVP */
     .rsvp-note{
       margin: 0 auto;
-      max-width: 62ch;
+      max-width: 66ch;
       color: var(--muted);
-      font-size: 1.08rem;
+      font-size: 1.1rem;
       line-height: 1.9;
     }
-
     .field{
       margin: 12px auto 0;
       width: min(520px, 92%);
-      text-align: left;
+      text-align:left;
     }
     label{
       display:block;
       font-family: var(--sans);
       font-size: .88rem;
       letter-spacing: .06em;
-      color: rgba(20,20,20,.62);
+      color: rgba(23,22,21,.62);
       margin: 0 0 6px;
     }
     input[type="text"], select{
-      width: 100%;
+      width:100%;
       padding: 12px 12px;
-      border: 1px solid rgba(20,20,20,.18);
+      border: 1px solid rgba(23,22,21,.18);
       border-radius: 12px;
       background: rgba(255,255,255,.92);
-      outline: none;
+      outline:none;
       font-size: 1rem;
-      color: rgba(20,20,20,.92);
+      color: rgba(23,22,21,.92);
       font-family: var(--sans);
     }
-    input[type="text"]::placeholder{ color: rgba(20,20,20,.45); }
-    select:invalid{ color: rgba(20,20,20,.45); }
+    input::placeholder{ color: rgba(23,22,21,.45); }
+    select:invalid{ color: rgba(23,22,21,.45); }
 
     .actions{
       width: min(520px, 92%);
@@ -257,9 +283,9 @@
     }
     button{
       appearance:none;
-      border: 1px solid rgba(20,20,20,.2);
+      border: 1px solid rgba(23,22,21,.2);
       background: transparent;
-      color: rgba(20,20,20,.9);
+      color: rgba(23,22,21,.9);
       padding: 12px 16px;
       border-radius: 999px;
       cursor:pointer;
@@ -268,7 +294,7 @@
       font-family: var(--sans);
       min-width: 210px;
     }
-    button:hover{ background: var(--soft); }
+    button:hover{ background: rgba(23,22,21,.06); }
     button:active{ transform: translateY(1px); }
     button[disabled]{ opacity:.55; cursor:not-allowed; }
 
@@ -277,7 +303,7 @@
       margin: 14px auto 0;
       padding: 12px 14px;
       border-top: 1px solid var(--hair);
-      color: rgba(20,20,20,.82);
+      color: rgba(23,22,21,.82);
       line-height: 1.9;
       font-family: var(--sans);
       display:none;
@@ -285,7 +311,7 @@
 
     footer{
       margin-top: 34px;
-      color: rgba(20,20,20,.45);
+      color: rgba(23,22,21,.45);
       font-size: .95rem;
       font-family: var(--sans);
     }
@@ -293,108 +319,132 @@
 </head>
 
 <body>
-  <div class="page">
-    <section class="hero">
-      <!-- EDIT: βάλε δική σου εικόνα αν θες -->
-      <img
-        src="https://images.unsplash.com/photo-1523438097201-512ae7d59c8b?q=80&w=2000&auto=format&fit=crop"
-        alt="Wedding"
-      />
-      <div class="hero-inner">
-        <div class="smallcaps">Wedding Invitation</div>
+  <div class="wrap">
+    <div class="sheet" role="document" aria-label="Προσκλητήριο Γάμου">
+      <div class="floral"></div>
+
+      <div class="content">
+        <!-- Monograms (replacing "Wedding Invitation") -->
+        <div class="monogram">E • S</div>
+
         <h1>Elvis &amp; Sofia</h1>
-        <p class="date">
-          10 / 07 / 2026 · 20:00
+        <p class="date">10 / 07 / 2026 · 20:00</p>
+
+        <div class="ornament"><span>✦</span></div>
+
+        <p class="intro">
+          Με ιδιαίτερη χαρά σας προσκαλούμε να μοιραστείτε μαζί μας
+          αυτή τη μοναδική στιγμή.
         </p>
+
+        <div class="ornament"><span>✦</span></div>
+
+        <section class="section">
+          <h2 class="section-title">Οι Οικογένειες</h2>
+          <div class="lines">
+            <div>Πατέρας Νύφης · Μητέρα Νύφης</div>
+            <div>Πατέρας Γαμπρού · Μητέρα Γαμπρού</div>
+            <div class="soft">με τιμή σας προσκαλούν στον γάμο των παιδιών τους</div>
+          </div>
+        </section>
+
+        <div class="ornament"><span>✦</span></div>
+
+        <section class="section">
+          <h2 class="section-title">Κουμπάροι</h2>
+          <div class="lines">
+            <div>Σταματίνα Φλεριανού</div>
+            <div>Δημήτρης Ikarai</div>
+          </div>
+        </section>
+
+        <div class="ornament"><span>✦</span></div>
+
+        <section class="section">
+          <h2 class="section-title">Ναός &amp; Δεξίωση</h2>
+          <div class="lines">
+            <div>Ο ναός και η δεξίωση πραγματοποιούνται στον ίδιο χώρο.</div>
+          </div>
+
+          <!-- Map preview -->
+          <div class="map-wrap" aria-label="Χάρτης τοποθεσίας">
+            <!--
+              IMPORTANT:
+              Βάλε εδώ το src από "Share → Embed a map" του Google Maps για να φορτώνει 100%.
+              Π.χ. https://www.google.com/maps/embed?pb=...
+            -->
+            <iframe
+              class="map"
+              id="mapFrame"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src=""
+              title="Χάρτης"
+            ></iframe>
+
+            <div class="map-actions">
+              <a class="maplink" href="https://maps.app.goo.gl/mxWEGeXatXpWLC759" target="_blank" rel="noopener">
+                Άνοιγμα στο Google Maps
+              </a>
+            </div>
+            <div style="height:12px;"></div>
+          </div>
+        </section>
+
+        <div class="ornament"><span>✦</span></div>
+
+        <section class="section">
+          <h2 class="section-title">Επιβεβαίωση Παρουσίας</h2>
+          <p class="rsvp-note">Παρακαλούμε ενημερώστε μας αν θα παρευρεθείτε.</p>
+
+          <div class="field">
+            <label for="name">Ονοματεπώνυμο</label>
+            <input type="text" id="name" placeholder="Π.χ. Γιώργος Παπαδόπουλος" autocomplete="name" />
+          </div>
+
+          <div class="field">
+            <label for="guests">Πόσα άτομα;</label>
+            <select id="guests" required>
+              <option value="" disabled selected hidden>Επιλέξτε αριθμό</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
+          </div>
+
+          <div class="actions">
+            <button id="btnYes" onclick="sendAnswer('Ναι')">Θα παρευρεθούμε</button>
+            <button id="btnNo" onclick="sendAnswer('Όχι')">Δεν θα μπορέσουμε</button>
+          </div>
+
+          <div class="message" id="message"></div>
+        </section>
+
+        <footer>Με αγάπη, Elvis &amp; Sofia</footer>
       </div>
-    </section>
-
-    <main>
-      <div class="ornament"><span>✦</span></div>
-
-      <p class="intro">
-        Με ιδιαίτερη χαρά σας προσκαλούμε να μοιραστείτε μαζί μας
-        την πιο όμορφη στιγμή της ζωής μας.
-      </p>
-
-      <div class="ornament"><span>✦</span></div>
-
-      <section class="section">
-        <h2 class="section-title">Οι Οικογένειες</h2>
-
-        <!-- Style like the example: clean centered lines -->
-        <div class="family-lines">
-          <div>Πατέρας Νύφης · Μητέρα Νύφης</div>
-          <div>Πατέρας Γαμπρού · Μητέρα Γαμπρού</div>
-          <div class="soft">με τιμή σας προσκαλούν στον γάμο των παιδιών τους</div>
-        </div>
-      </section>
-
-      <div class="ornament"><span>✦</span></div>
-
-      <section class="section">
-        <h2 class="section-title">Κουμπάροι</h2>
-        <div class="family-lines">
-          <div>Σταματίνα Φλεριανού</div>
-          <div>Δημήτρης Ikarai</div>
-        </div>
-      </section>
-
-      <div class="ornament"><span>✦</span></div>
-
-      <section class="section">
-        <h2 class="section-title">Ναός &amp; Δεξίωση</h2>
-        <div class="place-name">
-          Ο ναός και η δεξίωση πραγματοποιούνται στον ίδιο χώρο.
-        </div>
-        <a class="maplink" href="https://share.google/yOMAvKUf65f8HpWDr" target="_blank" rel="noopener">
-          Προβολή τοποθεσίας στον Χάρτη
-        </a>
-      </section>
-
-      <div class="ornament"><span>✦</span></div>
-
-      <section class="section rsvp">
-        <h2 class="section-title">Επιβεβαίωση Παρουσίας</h2>
-        <p class="rsvp-note">
-          Παρακαλούμε ενημερώστε μας αν θα παρευρεθείτε.
-        </p>
-
-        <div class="field">
-          <label for="name">Ονοματεπώνυμο</label>
-          <input type="text" id="name" placeholder="Π.χ. Γιώργος Παπαδόπουλος" autocomplete="name" />
-        </div>
-
-        <div class="field">
-          <label for="guests">Πόσα άτομα;</label>
-          <select id="guests" required>
-            <option value="" disabled selected hidden>Επιλέξτε αριθμό</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-          </select>
-        </div>
-
-        <div class="actions">
-          <button id="btnYes" onclick="sendAnswer('Ναι')">Θα παρευρεθούμε</button>
-          <button id="btnNo" onclick="sendAnswer('Όχι')">Δεν θα μπορέσουμε</button>
-        </div>
-
-        <div class="message" id="message"></div>
-      </section>
-
-      <footer>
-        Με αγάπη, Elvis &amp; Sofia
-      </footer>
-    </main>
+    </div>
   </div>
 
   <script>
-    // Κράτησα το δικό σου Google Apps Script endpoint
+    // === RSVP endpoint (δικό σου) ===
     const scriptURL = 'https://script.google.com/macros/s/AKfycbybtoiDeMffqrGW156TX2lzTclqni_j2ozIzufdX2FCSMPYJ58u6YJa_o7ar-EQNmOk/exec';
+
+    // === MAP ===
+    // 1) Βάλε εδώ το "Embed map" src από Google Maps για να δουλεύει σίγουρα.
+    // Αν το αφήσεις κενό, το iframe θα κρύβεται αυτόματα.
+    const MAP_EMBED_URL = ""; // <-- PASTE Google Maps embed src here (https://www.google.com/maps/embed?pb=...)
+
+    const mapFrame = document.getElementById("mapFrame");
+    if (MAP_EMBED_URL && MAP_EMBED_URL.startsWith("http")) {
+      mapFrame.src = MAP_EMBED_URL;
+    } else {
+      // Hide iframe if no embed URL was provided (but keep the nice frame + link)
+      mapFrame.style.display = "none";
+      mapFrame.parentElement.style.paddingTop = "12px";
+    }
 
     function lockButtons(locked) {
       document.querySelectorAll('button').forEach(btn => btn.disabled = locked);
