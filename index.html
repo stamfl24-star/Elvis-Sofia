@@ -6,14 +6,22 @@
   <meta name="color-scheme" content="light" />
   <title>Προσκλητήριο Γάμου</title>
 
+  <!-- Elegant calligraphy + classic serif -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --bg: #ffffff;
       --ink: #141414;
       --muted: rgba(20,20,20,.62);
-      --hair: rgba(20,20,20,.12);
+      --hair: rgba(20,20,20,.14);
       --soft: rgba(20,20,20,.06);
       --max: 760px;
+      --script: "Great Vibes", "Brush Script MT", "Segoe Script", cursive;
+      --serif: "Cormorant Garamond","Georgia","Times New Roman",serif;
+      --sans: "Inter","Arial","Helvetica",sans-serif;
     }
 
     *{ box-sizing: border-box; }
@@ -24,41 +32,35 @@
       color: var(--ink);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-
-      /* Classic + safe (no external fonts) */
-      font-family: "Georgia","Times New Roman",serif;
+      font-family: var(--serif);
     }
 
-    /* subtle paper texture (pure CSS) */
+    /* subtle paper light */
     body::before{
       content:"";
       position: fixed;
       inset: 0;
       pointer-events:none;
       background:
-        radial-gradient(1200px 500px at 12% 0%, rgba(0,0,0,.045), transparent 60%),
-        radial-gradient(900px 500px at 92% 10%, rgba(0,0,0,.035), transparent 55%),
-        radial-gradient(800px 450px at 30% 110%, rgba(0,0,0,.03), transparent 60%);
-      opacity: .9;
+        radial-gradient(1200px 520px at 12% -10%, rgba(0,0,0,.045), transparent 62%),
+        radial-gradient(900px 520px at 92% 8%, rgba(0,0,0,.035), transparent 60%),
+        radial-gradient(800px 480px at 30% 115%, rgba(0,0,0,.03), transparent 62%);
+      opacity: .95;
     }
 
-    .page{
-      position: relative;
-      min-height: 100%;
-    }
+    .page{ position: relative; min-height: 100%; }
 
-    /* HERO */
+    /* HERO (image + soft fade) */
     .hero{
       position: relative;
-      height: min(52vh, 520px);
-      min-height: 340px;
+      height: min(54vh, 560px);
+      min-height: 360px;
       width: 100%;
       display:flex;
       align-items:flex-end;
       justify-content:center;
       overflow:hidden;
     }
-
     .hero img{
       position:absolute;
       inset:0;
@@ -68,12 +70,14 @@
       transform: scale(1.02);
       filter: contrast(1.02) saturate(.98);
     }
-
     .hero::after{
       content:"";
       position:absolute;
       inset:0;
-      background: linear-gradient(to bottom, rgba(255,255,255,.10), rgba(255,255,255,.75) 72%, rgba(255,255,255,.98));
+      background: linear-gradient(to bottom,
+        rgba(255,255,255,.10),
+        rgba(255,255,255,.75) 72%,
+        rgba(255,255,255,.98));
     }
 
     .hero-inner{
@@ -84,54 +88,57 @@
       z-index:1;
     }
 
-    .monogram{
+    .smallcaps{
       display:inline-block;
       padding: 10px 14px;
       border: 1px solid rgba(20,20,20,.18);
       border-radius: 999px;
-      background: rgba(255,255,255,.65);
+      background: rgba(255,255,255,.68);
       backdrop-filter: blur(6px);
-      letter-spacing: .12em;
-      font-weight: 600;
-      font-family: "Arial","Helvetica",sans-serif;
-      font-size: .92rem;
+      letter-spacing: .16em;
+      font-weight: 500;
+      font-family: var(--sans);
+      font-size: .86rem;
+      text-transform: uppercase;
+      color: rgba(20,20,20,.78);
     }
 
+    /* Names: calligraphy, NOT bold */
     h1{
-      margin: 14px 0 8px;
-      font-size: clamp(34px, 5vw, 52px);
-      font-weight: 700;
-      letter-spacing: .02em;
+      margin: 16px 0 6px;
+      font-family: var(--script);
+      font-size: clamp(50px, 7vw, 86px);
+      font-weight: 400;          /* NOT bold */
+      letter-spacing: .01em;
+      line-height: 1.05;
     }
 
-    .lead{
+    .date{
       margin: 0 auto;
-      max-width: 62ch;
-      color: rgba(20,20,20,.72);
+      color: rgba(20,20,20,.74);
       font-size: 1.08rem;
       line-height: 1.75;
-      padding-bottom: 2px;
+      font-family: var(--serif);
     }
 
-    /* CONTENT */
     main{
       width: min(var(--max), 92vw);
       margin: 0 auto;
-      padding: 26px 0 54px;
+      padding: 24px 0 56px;
       text-align:center;
       position:relative;
       z-index:1;
     }
 
     .ornament{
-      margin: 18px auto 22px;
-      width: min(520px, 82%);
+      margin: 18px auto 20px;
+      width: min(520px, 84%);
       display:flex;
       align-items:center;
       gap: 14px;
-      color: rgba(20,20,20,.38);
       justify-content:center;
       user-select:none;
+      color: rgba(20,20,20,.38);
     }
     .ornament::before,
     .ornament::after{
@@ -145,38 +152,72 @@
       letter-spacing: .14em;
     }
 
-    .block{
-      margin: 18px auto 0;
-    }
-
-    .block h2{
-      margin: 0 0 10px;
-      font-family: "Arial","Helvetica",sans-serif;
-      font-size: .92rem;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: rgba(20,20,20,.72);
-      font-weight: 700;
-    }
-
-    .text{
+    .intro{
       margin: 0 auto;
       max-width: 68ch;
       color: var(--muted);
-      font-size: 1.05rem;
-      line-height: 1.85;
+      font-size: 1.14rem;
+      line-height: 1.95;
+      padding: 2px 0 0;
     }
 
-    .names{
+    .section{
+      margin-top: 18px;
+    }
+
+    .section-title{
+      margin: 0 0 10px;
+      font-family: var(--sans);
+      font-size: .9rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: rgba(20,20,20,.72);
+      font-weight: 600;
+    }
+
+    /* Family style (like wedding invitation lists) */
+    .family-lines{
+      margin: 0 auto;
+      max-width: 560px;
+      font-size: 1.18rem;
+      line-height: 2.0;
+      color: rgba(20,20,20,.86);
+    }
+    .family-lines .soft{
+      color: rgba(20,20,20,.62);
+      font-size: 1.02rem;
+      line-height: 1.8;
+      margin-top: 4px;
+      font-family: var(--serif);
+    }
+
+    /* Location */
+    .place-name{
+      font-size: 1.18rem;
+      color: rgba(20,20,20,.86);
+      line-height: 1.8;
+    }
+    .maplink{
+      display:inline-block;
       margin-top: 10px;
-      color: rgba(20,20,20,.88);
-      font-size: 1.06rem;
-      line-height: 1.9;
+      font-family: var(--sans);
+      text-decoration: none;
+      color: rgba(20,20,20,.92);
+      border-bottom: 1px solid rgba(20,20,20,.28);
+      padding-bottom: 2px;
+      width: fit-content;
     }
 
-    /* RSVP – elegant, not “form-y” */
+    /* RSVP (clean, elegant) */
     .rsvp{
-      margin-top: 30px;
+      margin-top: 28px;
+    }
+    .rsvp-note{
+      margin: 0 auto;
+      max-width: 62ch;
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.9;
     }
 
     .field{
@@ -184,30 +225,26 @@
       width: min(520px, 92%);
       text-align: left;
     }
-
     label{
       display:block;
-      font-family: "Arial","Helvetica",sans-serif;
-      font-size: .9rem;
+      font-family: var(--sans);
+      font-size: .88rem;
       letter-spacing: .06em;
       color: rgba(20,20,20,.62);
       margin: 0 0 6px;
     }
-
     input[type="text"], select{
       width: 100%;
       padding: 12px 12px;
       border: 1px solid rgba(20,20,20,.18);
       border-radius: 12px;
-      background: rgba(255,255,255,.9);
+      background: rgba(255,255,255,.92);
       outline: none;
       font-size: 1rem;
       color: rgba(20,20,20,.92);
-      font-family: "Arial","Helvetica",sans-serif;
+      font-family: var(--sans);
     }
-
     input[type="text"]::placeholder{ color: rgba(20,20,20,.45); }
-
     select:invalid{ color: rgba(20,20,20,.45); }
 
     .actions{
@@ -218,7 +255,6 @@
       justify-content:center;
       flex-wrap: wrap;
     }
-
     button{
       appearance:none;
       border: 1px solid rgba(20,20,20,.2);
@@ -229,7 +265,7 @@
       cursor:pointer;
       transition: transform .06s ease, background .22s ease, opacity .2s ease;
       font-size: 1rem;
-      font-family: "Arial","Helvetica",sans-serif;
+      font-family: var(--sans);
       min-width: 210px;
     }
     button:hover{ background: var(--soft); }
@@ -242,34 +278,16 @@
       padding: 12px 14px;
       border-top: 1px solid var(--hair);
       color: rgba(20,20,20,.82);
-      line-height: 1.8;
-      font-family: "Arial","Helvetica",sans-serif;
+      line-height: 1.9;
+      font-family: var(--sans);
       display:none;
-    }
-
-    .links{
-      margin-top: 12px;
-      display:flex;
-      flex-direction: column;
-      gap: 10px;
-      align-items:center;
-    }
-
-    .maplink{
-      display:inline-block;
-      font-family: "Arial","Helvetica",sans-serif;
-      text-decoration: none;
-      color: rgba(20,20,20,.92);
-      border-bottom: 1px solid rgba(20,20,20,.28);
-      padding-bottom: 2px;
-      width: fit-content;
     }
 
     footer{
       margin-top: 34px;
       color: rgba(20,20,20,.45);
       font-size: .95rem;
-      font-family: "Arial","Helvetica",sans-serif;
+      font-family: var(--sans);
     }
   </style>
 </head>
@@ -277,20 +295,16 @@
 <body>
   <div class="page">
     <section class="hero">
-      <!-- EDIT: βάλε δική σου εικόνα (κατά προτίμηση 2000px+ πλάτος) -->
+      <!-- EDIT: βάλε δική σου εικόνα αν θες -->
       <img
         src="https://images.unsplash.com/photo-1523438097201-512ae7d59c8b?q=80&w=2000&auto=format&fit=crop"
         alt="Wedding"
       />
       <div class="hero-inner">
-        <!-- EDIT: αρχικά αν θέλεις -->
-        <div class="monogram">E • Σ</div>
-        <!-- EDIT: ονόματα -->
-        <h1>Elvis &amp; Σοφία</h1>
-        <!-- EDIT: κείμενο/ημερομηνία -->
-        <p class="lead">
-          Με χαρά σας προσκαλούμε στον γάμο μας.<br/>
-          <span style="color: rgba(20,20,20,.78);">Σάββατο, … … 2026 · Ώρα …</span>
+        <div class="smallcaps">Wedding Invitation</div>
+        <h1>Elvis &amp; Sofia</h1>
+        <p class="date">
+          10 / 07 / 2026 · 20:00
         </p>
       </div>
     </section>
@@ -298,80 +312,54 @@
     <main>
       <div class="ornament"><span>✦</span></div>
 
-      <div class="block">
-        <p class="text">
-          Θα χαρούμε πολύ να μοιραστούμε αυτή τη μέρα μαζί σας.
-        </p>
-      </div>
+      <p class="intro">
+        Με ιδιαίτερη χαρά σας προσκαλούμε να μοιραστείτε μαζί μας
+        την πιο όμορφη στιγμή της ζωής μας.
+      </p>
 
       <div class="ornament"><span>✦</span></div>
 
-      <div class="block">
-        <h2>Οι Οικογένειες</h2>
-        <div class="names">
-          <!-- EDIT: βάλε ακριβώς όπως θέλεις να εμφανίζεται -->
-          <div>Οικογένεια Γαμπρού: …</div>
-          <div>…</div>
-          <div style="height:8px"></div>
-          <div>Οικογένεια Νύφης: …</div>
-          <div>…</div>
+      <section class="section">
+        <h2 class="section-title">Οι Οικογένειες</h2>
+
+        <!-- Style like the example: clean centered lines -->
+        <div class="family-lines">
+          <div>Πατέρας Νύφης · Μητέρα Νύφης</div>
+          <div>Πατέρας Γαμπρού · Μητέρα Γαμπρού</div>
+          <div class="soft">με τιμή σας προσκαλούν στον γάμο των παιδιών τους</div>
         </div>
-      </div>
+      </section>
 
       <div class="ornament"><span>✦</span></div>
 
-      <div class="block">
-        <h2>Οι Κουμπάροι</h2>
-        <div class="names">
-          <!-- EDIT -->
-          <div>…</div>
-          <div>…</div>
+      <section class="section">
+        <h2 class="section-title">Κουμπάροι</h2>
+        <div class="family-lines">
+          <div>Σταματίνα Φλεριανού</div>
+          <div>Δημήτρης Ikarai</div>
         </div>
-      </div>
+      </section>
 
       <div class="ornament"><span>✦</span></div>
 
-      <div class="block">
-        <h2>Ιερός Ναός</h2>
-        <div class="names">
-          <!-- EDIT -->
-          <div>Όνομα Ναού</div>
-          <div style="color: rgba(20,20,20,.62)">Περιοχή / Πόλη</div>
+      <section class="section">
+        <h2 class="section-title">Ναός &amp; Δεξίωση</h2>
+        <div class="place-name">
+          Ο ναός και η δεξίωση πραγματοποιούνται στον ίδιο χώρο.
         </div>
-        <div class="links">
-          <!-- EDIT: βάλε το πραγματικό Google Maps link -->
-          <a class="maplink" href="https://maps.app.goo.gl/" target="_blank" rel="noopener">
-            Προβολή στο Google Maps
-          </a>
-        </div>
-      </div>
+        <a class="maplink" href="https://share.google/yOMAvKUf65f8HpWDr" target="_blank" rel="noopener">
+          Προβολή τοποθεσίας στον Χάρτη
+        </a>
+      </section>
 
       <div class="ornament"><span>✦</span></div>
 
-      <div class="block">
-        <h2>Δεξίωση</h2>
-        <div class="names">
-          <!-- EDIT -->
-          <div>Κτήμα / Αίθουσα</div>
-          <div style="color: rgba(20,20,20,.62)">Ώρα έναρξης: …</div>
-        </div>
-        <div class="links">
-          <!-- EDIT: βάλε το πραγματικό Google Maps link -->
-          <a class="maplink" href="https://maps.app.goo.gl/" target="_blank" rel="noopener">
-            Προβολή στο Google Maps
-          </a>
-        </div>
-      </div>
-
-      <div class="ornament"><span>✦</span></div>
-
-      <div class="block rsvp">
-        <h2>Επιβεβαίωση Παρουσίας</h2>
-        <p class="text">
-          Παρακαλούμε επιβεβαιώστε την παρουσία σας μέχρι τις … … 2026.
+      <section class="section rsvp">
+        <h2 class="section-title">Επιβεβαίωση Παρουσίας</h2>
+        <p class="rsvp-note">
+          Παρακαλούμε ενημερώστε μας αν θα παρευρεθείτε.
         </p>
 
-        <!-- RSVP fields (kept logic, redesigned look) -->
         <div class="field">
           <label for="name">Ονοματεπώνυμο</label>
           <input type="text" id="name" placeholder="Π.χ. Γιώργος Παπαδόπουλος" autocomplete="name" />
@@ -396,17 +384,16 @@
         </div>
 
         <div class="message" id="message"></div>
-      </div>
+      </section>
 
       <footer>
-        <!-- EDIT: αν θες τηλέφωνα/επικοινωνία -->
-        Με αγάπη, Elvis &amp; Σοφία
+        Με αγάπη, Elvis &amp; Sofia
       </footer>
     </main>
   </div>
 
   <script>
-    // EDIT: κράτα το δικό σου
+    // Κράτησα το δικό σου Google Apps Script endpoint
     const scriptURL = 'https://script.google.com/macros/s/AKfycbybtoiDeMffqrGW156TX2lzTclqni_j2ozIzufdX2FCSMPYJ58u6YJa_o7ar-EQNmOk/exec';
 
     function lockButtons(locked) {
@@ -471,6 +458,3 @@
   </script>
 </body>
 </html>
-
-
-
