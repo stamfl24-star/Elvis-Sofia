@@ -1,179 +1,448 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light" />
   <title>Προσκλητήριο Γάμου</title>
+
   <style>
-    body {
-      font-family: 'Times New Roman', sans-serif;
-      background: url('https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
-      text-align: center;
-      padding: 0 20px;
-    }
-    .overlay {
-      background: rgba(0,0,0,0.2);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-    h1 {
-      font-size: 3em;
-      margin-bottom: 0.2em;
-    }
-    p {
-      font-size: 1.2em;
-      margin-bottom: 2em;
-    }
-    input[type="text"] {
-      padding: 10px;
-      font-size: 1em;
-      border-radius: 5px;
-      border: none;
-      margin-bottom: 1em;
-      width: 80%;
-      max-width: 400px;
-    }
-    button {
-      padding: 15px 30px;
-      font-size: 1.2em;
-      margin: 10px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    select {
-      padding: 10px;
-      font-size: 1em;
-      border-radius: 5px;
-      border: none;
-      margin-bottom: 1em;
-      width: 80%;
-      max-width: 400px;
-      color: #bbb; /* placeholder color */
-    }
-    select.has-value {
-      color: #000; /* κανονικό όταν επιλεγεί */
+    :root{
+      --bg: #fbfbfa;
+      --paper: #ffffff;
+      --ink: #151515;
+      --muted: rgba(21,21,21,.68);
+      --line: rgba(21,21,21,.12);
+      --accent: #2b2b2b;
+      --accent-soft: rgba(21,21,21,.06);
+      --shadow: 0 18px 45px rgba(0,0,0,.08);
+      --radius: 18px;
     }
 
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin:0;
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(0,0,0,.06), transparent 60%),
+        radial-gradient(900px 500px at 95% 10%, rgba(0,0,0,.05), transparent 55%),
+        linear-gradient(var(--bg), var(--bg));
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-family: "Georgia", "Times New Roman", serif;
+    }
 
-    button.yes { background: #ff6b6b; color: #fff; }
-    button.no { background: #555; color: #fff; }
-    button:hover { opacity: 0.8; }
-    .message { margin-top: 2em; font-size: 1.2em; }
+    .wrap{
+      min-height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 28px 16px;
+    }
+
+    .card{
+      width: min(860px, 100%);
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position: relative;
+    }
+
+    /* Elegant top border */
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:0 0 auto 0;
+      height: 10px;
+      background: linear-gradient(90deg, transparent, rgba(0,0,0,.15), transparent);
+    }
+
+    header{
+      padding: 56px 22px 26px;
+      text-align:center;
+    }
+
+    .monogram{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width: 54px;
+      height: 54px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: linear-gradient(#fff, #fbfbfb);
+      box-shadow: 0 10px 25px rgba(0,0,0,.06);
+      margin-bottom: 18px;
+      letter-spacing: .04em;
+      font-weight: 700;
+    }
+
+    h1{
+      margin: 0 0 10px;
+      font-size: clamp(30px, 4.6vw, 44px);
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+
+    .subtitle{
+      margin: 0 auto;
+      max-width: 62ch;
+      color: var(--muted);
+      font-size: 1.06rem;
+      line-height: 1.65;
+    }
+
+    .divider{
+      height:1px;
+      background: linear-gradient(90deg, transparent, var(--line), transparent);
+      margin: 22px auto 0;
+      width: min(560px, 92%);
+    }
+
+    main{
+      padding: 10px 18px 22px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      padding: 18px 0 10px;
+    }
+
+    @media (min-width: 760px){
+      header{ padding: 60px 34px 28px; }
+      main{ padding: 16px 34px 34px; }
+      .grid{ grid-template-columns: 1fr 1fr; gap: 16px; }
+      .span-2{ grid-column: 1 / -1; }
+    }
+
+    section{
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px 16px;
+      background: linear-gradient(#fff, #fff);
+    }
+
+    section h2{
+      margin: 0 0 10px;
+      font-size: 1.05rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-family: "Arial", "Helvetica", sans-serif;
+      color: var(--accent);
+    }
+
+    .text{
+      color: var(--muted);
+      line-height: 1.65;
+      margin: 0;
+      font-size: 1.02rem;
+    }
+
+    .names{
+      margin-top: 10px;
+      color: var(--ink);
+      line-height: 1.6;
+      font-size: 1.03rem;
+    }
+
+    /* RSVP */
+    .rsvp{
+      padding: 20px 16px;
+    }
+
+    .form{
+      margin-top: 12px;
+      display:grid;
+      gap: 12px;
+    }
+
+    label{
+      display:block;
+      font-family: "Arial", "Helvetica", sans-serif;
+      font-size: .92rem;
+      letter-spacing: .02em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    input[type="text"], select{
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #fff;
+      outline: none;
+      font-size: 1rem;
+      color: var(--ink);
+      font-family: "Arial", "Helvetica", sans-serif;
+    }
+
+    input[type="text"]::placeholder{ color: rgba(21,21,21,.45); }
+
+    select:invalid{ color: rgba(21,21,21,.45); }
+
+    .actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    button{
+      appearance:none;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      padding: 12px 14px;
+      border-radius: 999px;
+      cursor:pointer;
+      font-size: 1rem;
+      font-family: "Arial", "Helvetica", sans-serif;
+      transition: transform .06s ease, background .2s ease, opacity .2s ease;
+      flex: 1 1 180px;
+    }
+
+    button:hover{ background: var(--accent-soft); }
+    button:active{ transform: translateY(1px); }
+    button[disabled]{ opacity:.55; cursor:not-allowed; }
+
+    .primary{
+      border-color: rgba(21,21,21,.25);
+      background: linear-gradient(#ffffff, #fbfbfb);
+      font-weight: 600;
+    }
+
+    .secondary{
+      background: #fff;
+    }
+
+    .message{
+      margin-top: 14px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px dashed rgba(21,21,21,.18);
+      background: rgba(21,21,21,.03);
+      color: var(--ink);
+      line-height: 1.6;
+      display:none;
+      font-family: "Arial", "Helvetica", sans-serif;
+    }
+
+    /* Location blocks */
+    .place{
+      display:grid;
+      gap: 8px;
+    }
+
+    .place strong{
+      font-family: "Arial", "Helvetica", sans-serif;
+      letter-spacing: .02em;
+    }
+
+    .place a{
+      display:inline-block;
+      width: fit-content;
+      font-family: "Arial", "Helvetica", sans-serif;
+      text-decoration: none;
+      color: var(--ink);
+      border-bottom: 1px solid rgba(21,21,21,.25);
+      padding-bottom: 2px;
+    }
+
+    footer{
+      text-align:center;
+      padding: 0 18px 22px;
+      color: rgba(21,21,21,.45);
+      font-size: .95rem;
+    }
   </style>
 </head>
+
 <body>
-  <div class="overlay">
-    <h1>Elvis & Σοφία 💍</h1>
-    <p>Με μεγάλη χαρά σας προσκαλούμε στον γάμο μας! Παρακαλούμε ενημερώστε μας αν θα παρευρεθείτε.</p>
-    
-    <input type="text" id="name" placeholder="Παρακαλώ γράψτε το ονοματεπώνυμο σας." />
-    <select id="guests">
-      <option value="" disabled selected hidden>Πόσα άτομα;</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-    </select>
+  <div class="wrap">
+    <div class="card">
 
+      <header>
+        <div class="monogram">E • Σ</div> <!-- EDIT: αρχικά αν θες -->
+        <h1>Elvis & Σοφία</h1> <!-- EDIT: ονόματα -->
+        <p class="subtitle">
+          Με χαρά σας προσκαλούμε να γιορτάσετε μαζί μας τον γάμο μας.
+          Παρακαλούμε ενημερώστε μας για την παρουσία σας.
+        </p>
+        <div class="divider"></div>
+      </header>
 
-    
-    <div>
-      <button class="yes" onclick="sendAnswer('Ναι')">Ναι</button>
-      <button class="no" onclick="sendAnswer('Όχι')">Όχι</button>
+      <main>
+        <div class="grid">
+
+          <section>
+            <h2>Οικογένεια Γαμπρού</h2>
+            <p class="text">Με τιμή σας προσκαλεί η οικογένεια του γαμπρού.</p>
+            <div class="names">
+              <!-- EDIT: ονόματα -->
+              <div>Πατέρας: …</div>
+              <div>Μητέρα: …</div>
+            </div>
+          </section>
+
+          <section>
+            <h2>Οικογένεια Νύφης</h2>
+            <p class="text">Με τιμή σας προσκαλεί η οικογένεια της νύφης.</p>
+            <div class="names">
+              <!-- EDIT: ονόματα -->
+              <div>Πατέρας: …</div>
+              <div>Μητέρα: …</div>
+            </div>
+          </section>
+
+          <section class="span-2">
+            <h2>Κουμπάροι</h2>
+            <p class="text">
+              Θα χαρούμε να έχουμε δίπλα μας τους κουμπάρους μας:
+            </p>
+            <div class="names">
+              <!-- EDIT: ονόματα κουμπάρων -->
+              <div>…</div>
+              <div>…</div>
+            </div>
+          </section>
+
+          <section class="span-2">
+            <h2>Τοποθεσίες</h2>
+
+            <div class="place" style="margin-bottom:14px;">
+              <strong>Ιερός Ναός</strong>
+              <div class="text"> <!-- EDIT: κείμενο ναού -->
+                Όνομα Ναού, Περιοχή
+              </div>
+              <!-- EDIT: βάλε link Google Maps για ναό -->
+              <a href="https://maps.google.com/?q=Church" target="_blank" rel="noopener">Άνοιγμα σε Χάρτες</a>
+            </div>
+
+            <div class="place">
+              <strong>Δεξίωση</strong>
+              <div class="text"> <!-- EDIT: κείμενο δεξίωσης -->
+                Κτήμα / Αίθουσα, Περιοχή
+              </div>
+              <!-- EDIT: βάλε link Google Maps για δεξίωση -->
+              <a href="https://maps.google.com/?q=Reception" target="_blank" rel="noopener">Άνοιγμα σε Χάρτες</a>
+            </div>
+          </section>
+
+          <section class="span-2 rsvp">
+            <h2>RSVP</h2>
+            <p class="text">
+              Συμπληρώστε το ονοματεπώνυμό σας και ενημερώστε μας αν θα παρευρεθείτε.
+            </p>
+
+            <div class="form">
+              <div>
+                <label for="name">Ονοματεπώνυμο</label>
+                <input type="text" id="name" placeholder="Π.χ. Γιώργος Παπαδόπουλος" autocomplete="name" />
+              </div>
+
+              <div>
+                <label for="guests">Πόσα άτομα;</label>
+                <select id="guests" required>
+                  <option value="" disabled selected hidden>Επιλέξτε αριθμό</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                </select>
+              </div>
+
+              <div class="actions">
+                <button class="primary" id="btnYes" onclick="sendAnswer('Ναι')">Θα παρευρεθούμε</button>
+                <button class="secondary" id="btnNo" onclick="sendAnswer('Όχι')">Δεν θα μπορέσουμε</button>
+              </div>
+
+              <div class="message" id="message"></div>
+            </div>
+          </section>
+
+        </div>
+      </main>
+
+      <footer>
+        <!-- EDIT: αν θες ημερομηνία -->
+        <span>Με αγάπη, Elvis & Σοφία</span>
+      </footer>
+
     </div>
-
-    <div class="message" id="message"></div>
   </div>
 
   <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbybtoiDeMffqrGW156TX2lzTclqni_j2ozIzufdX2FCSMPYJ58u6YJa_o7ar-EQNmOk/exec'; //  link από το Google Apps Script
+    // EDIT: κράτα το ίδιο script URL που έχεις
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbybtoiDeMffqrGW156TX2lzTclqni_j2ozIzufdX2FCSMPYJ58u6YJa_o7ar-EQNmOk/exec';
 
-  function sendAnswer(answer) {
-    // 🔒 Κλείδωμα κουμπιών ΑΜΕΣΑ
-    document.querySelectorAll('button').forEach(btn => btn.disabled = true);
-    const guests = document.getElementById('guests').value;
-    const name = document.getElementById('name').value.trim();
-    const messageEl = document.getElementById('message');
-
-    if (name === '') {
-      messageEl.innerText = 'Παρακαλώ γράψτε το ονοματεπώνυμο σας.';
-    
-      // ❗ Αν δεν έχει όνομα, ξανα-ξεκλειδώνουμε
-      document.querySelectorAll('button').forEach(btn => btn.disabled = false);
-      return;
-    }
-    if (answer.includes('Ναι') && guests === '') {
-      messageEl.innerText = 'Παρακαλώ επίλεξε πόσα άτομα θα έρθετε.';
-      document.querySelectorAll('button').forEach(btn => btn.disabled = false);
-      return;
+    function lockButtons(locked) {
+      document.querySelectorAll('button').forEach(btn => btn.disabled = locked);
     }
 
+    function sendAnswer(answer) {
+      lockButtons(true);
 
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('answer', answer);
-    formData.append('guests', guests);
+      const guests = document.getElementById('guests').value;
+      const name = document.getElementById('name').value.trim();
+      const messageEl = document.getElementById('message');
 
+      const showMsg = (html) => {
+        messageEl.style.display = 'block';
+        messageEl.innerHTML = html;
+      };
 
-    fetch(scriptURL, {
-      method: 'POST',
-      body: formData
-    })
+      if (name === '') {
+        showMsg('Παρακαλώ γράψτε το ονοματεπώνυμό σας.');
+        lockButtons(false);
+        return;
+      }
 
-  .then(response => response.json())
-  .then(data => {
-    if (answer.includes('Ναι')) {
-      messageEl.innerHTML = `
-        <strong>Σας ευχαριστούμε πολύ!</strong><br>
-        Η παρουσία σας θα μας δώσει μεγάλη χαρά.<br>
-        Ανυπομονούμε να σας δούμε! 💖
-      `;
-    } else {
-      messageEl.innerHTML = `
-        <strong>Σας ευχαριστούμε για την απάντησή σας.</strong><br>
-        Θα σας έχουμε στην καρδιά μας εκείνη τη μέρα.
-      `;
-    }
+      if (answer.includes('Ναι') && guests === '') {
+        showMsg('Παρακαλώ επίλεξε πόσα άτομα θα έρθετε.');
+        lockButtons(false);
+        return;
+      }
 
-    document.getElementById('name').style.display = 'none';
-    document.querySelectorAll('button').forEach(btn => btn.style.display = 'none');
-    document.getElementById('guests').style.display = 'none';
+      const formData = new FormData();
+      formData.append('name', name);
+      formData.append('answer', answer);
+      formData.append('guests', guests);
 
-  })
-  .catch(error => {
-    messageEl.innerText = 'Υπήρξε πρόβλημα, δοκίμασε ξανά.';
-    console.error(error);
-  });
+      fetch(scriptURL, { method: 'POST', body: formData })
+        .then(r => r.json())
+        .then(() => {
+          if (answer.includes('Ναι')) {
+            showMsg(`
+              <strong>Σας ευχαριστούμε πολύ!</strong><br>
+              Η παρουσία σας θα μας δώσει μεγάλη χαρά.<br>
+              Ανυπομονούμε να σας δούμε. ♡
+            `);
+          } else {
+            showMsg(`
+              <strong>Σας ευχαριστούμε για την απάντησή σας.</strong><br>
+              Θα σας έχουμε στην καρδιά μας εκείνη τη μέρα.
+            `);
+          }
 
+          document.getElementById('name').style.display = 'none';
+          document.getElementById('guests').style.display = 'none';
+          document.getElementById('btnYes').style.display = 'none';
+          document.getElementById('btnNo').style.display = 'none';
+        })
+        .catch(err => {
+          console.error(err);
+          showMsg('Υπήρξε πρόβλημα, δοκίμασε ξανά.');
+          lockButtons(false);
+        });
     }
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
