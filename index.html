@@ -6,21 +6,24 @@
   <meta name="color-scheme" content="light" />
   <title>Προσκλητήριο Γάμου</title>
 
-  <!-- Fonts (calligraphy + classic serif + clean sans) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg: #ece7df;          /* outer background */
-      --paper: #fbf7f1;       /* paper */
-      --ink: #2a2622;         /* text */
-      --muted: rgba(42,38,34,.65);
+      --bg: #e8e1d8;
+      --paper: #fbf7f1;
+      --ink: #2a2422;
+      --muted: rgba(42,36,34,.66);
 
-      --gold: #b08a6a;        /* gold lines */
-      --gold2: rgba(176,138,106,.55);
-      --gold3: rgba(176,138,106,.28);
+      --wine: #7b1232;
+      --wine2: rgba(123,18,50,.55);
+      --wine3: rgba(123,18,50,.25);
+
+      --olive: #5f6f3a;
+      --olive2: rgba(95,111,58,.22);
+      --blush: #d8a6ad;
 
       --shadow: 0 28px 80px rgba(0,0,0,.22);
 
@@ -32,7 +35,9 @@
     }
 
     * { box-sizing: border-box; }
+
     html, body { height:100%; }
+
     body{
       margin:0;
       background: var(--bg);
@@ -42,18 +47,17 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* outer texture (paper-ish) */
     body::before{
       content:"";
       position: fixed;
       inset: 0;
       pointer-events:none;
       background:
-        radial-gradient(1200px 700px at 10% -15%, rgba(0,0,0,.08), transparent 60%),
-        radial-gradient(1000px 700px at 90% 0%, rgba(0,0,0,.06), transparent 60%),
-        radial-gradient(900px 650px at 50% 120%, rgba(0,0,0,.05), transparent 62%),
+        radial-gradient(1200px 700px at 10% -15%, rgba(123,18,50,.10), transparent 60%),
+        radial-gradient(1000px 700px at 90% 0%, rgba(95,111,58,.10), transparent 60%),
+        radial-gradient(900px 650px at 50% 120%, rgba(123,18,50,.08), transparent 62%),
         repeating-linear-gradient(0deg, rgba(255,255,255,.06) 0 2px, transparent 2px 9px);
-      opacity: .55;
+      opacity: .70;
     }
 
     .wrap{
@@ -70,50 +74,47 @@
       box-shadow: var(--shadow);
       position: relative;
       overflow: hidden;
-      border-radius: 2px; /* almost square like paper */
+      border-radius: 2px;
     }
 
-    /* outer gold border */
     .card::before{
       content:"";
       position:absolute;
       inset: 18px;
-      border: 2px solid var(--gold2);
+      border: 2px solid var(--wine2);
       pointer-events:none;
     }
-    /* inner hairline border */
+
     .card::after{
       content:"";
       position:absolute;
       inset: 30px;
-      border: 1px solid var(--gold3);
+      border: 1px solid var(--wine3);
       pointer-events:none;
     }
 
-    /* subtle paper grain inside card */
     .grain{
       position:absolute;
       inset:0;
       pointer-events:none;
       background:
-        radial-gradient(800px 420px at 50% 10%, rgba(0,0,0,.06), transparent 60%),
-        radial-gradient(900px 520px at 40% 120%, rgba(0,0,0,.05), transparent 65%),
+        radial-gradient(800px 420px at 50% 10%, rgba(123,18,50,.045), transparent 60%),
+        radial-gradient(900px 520px at 40% 120%, rgba(95,111,58,.06), transparent 65%),
         repeating-linear-gradient(90deg, rgba(0,0,0,.010) 0 2px, transparent 2px 7px);
-      opacity:.28;
+      opacity:.34;
     }
 
-    /* floral line art (top-left) */
     .floral{
       position:absolute;
       inset:0;
       pointer-events:none;
-      opacity:.42;
+      opacity:.38;
       background-repeat:no-repeat;
       background-size: 560px auto;
       background-position: -70px -55px;
       background-image: url("data:image/svg+xml;charset=utf-8,\
       <svg xmlns='http://www.w3.org/2000/svg' width='900' height='600' viewBox='0 0 900 600'>\
-        <g fill='none' stroke='%23b08a6a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' opacity='0.9'>\
+        <g fill='none' stroke='%237b1232' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' opacity='0.9'>\
           <path d='M60 240c85-95 190-105 280-35 60 45 135 75 245 58 90-14 165-55 250-12'/>\
           <path d='M135 185c24 40 16 80-12 108'/>\
           <path d='M190 155c35 55 22 110-26 150'/>\
@@ -136,7 +137,6 @@
       text-align:center;
     }
 
-    /* header monogram */
     .monogram{
       display:flex;
       align-items:center;
@@ -145,27 +145,28 @@
       width: 86px;
       height: 86px;
       border-radius: 999px;
-      border: 2px solid var(--gold2);
+      border: 2px solid var(--wine2);
       position: relative;
-      background: rgba(251,247,241,.65);
-      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+      background: rgba(251,247,241,.72);
+      box-shadow: 0 10px 30px rgba(123,18,50,.11);
     }
+
     .monogram::after{
       content:"";
       position:absolute;
       inset: 8px;
       border-radius: 999px;
-      border: 1px solid var(--gold3);
+      border: 1px solid var(--wine3);
     }
+
     .mono-text{
       font-family: var(--serif);
       font-weight: 600;
       font-size: 28px;
-      color: rgba(42,38,34,.85);
+      color: var(--wine);
       letter-spacing: .02em;
     }
 
-    /* small ornament line left-right */
     .mini-line{
       margin: 10px auto 0;
       width: min(520px, 88%);
@@ -173,26 +174,28 @@
       align-items:center;
       justify-content:center;
       gap: 12px;
-      color: var(--gold);
-      opacity: .9;
+      color: var(--wine);
+      opacity: .95;
       user-select:none;
     }
+
     .mini-line::before,
     .mini-line::after{
       content:"";
       height: 1px;
       flex:1;
-      background: linear-gradient(90deg, transparent, var(--gold2), transparent);
+      background: linear-gradient(90deg, transparent, var(--wine2), transparent);
     }
+
     .mini-line svg{ display:block; }
 
     h1{
       margin: 10px 0 8px;
       font-family: var(--script);
-      font-weight: 400; /* not bold */
+      font-weight: 400;
       font-size: clamp(56px, 6.8vw, 92px);
       line-height: 1.02;
-      color: rgba(42,38,34,.92);
+      color: rgba(42,36,34,.94);
     }
 
     .date{
@@ -200,10 +203,9 @@
       font-family: var(--serif);
       font-size: 1.05rem;
       letter-spacing: .12em;
-      color: rgba(42,38,34,.70);
+      color: rgba(42,36,34,.70);
     }
 
-    /* section divider with little star */
     .divider{
       margin: 18px auto 18px;
       width: min(640px, 90%);
@@ -211,18 +213,21 @@
       align-items:center;
       gap: 16px;
       justify-content:center;
-      color: var(--gold);
+      color: var(--wine);
       opacity: .95;
     }
+
     .divider::before,
     .divider::after{
       content:"";
       height: 1px;
       flex:1;
-      background: linear-gradient(90deg, transparent, var(--gold2), transparent);
+      background: linear-gradient(90deg, transparent, var(--wine2), transparent);
     }
+
     .divider .star{
-      width: 18px; height: 18px;
+      width: 18px;
+      height: 18px;
     }
 
     .intro{
@@ -230,7 +235,7 @@
       margin: 0 auto;
       font-size: 1.22rem;
       line-height: 1.95;
-      color: rgba(42,38,34,.78);
+      color: rgba(42,36,34,.78);
     }
 
     .title{
@@ -239,7 +244,7 @@
       font-weight: 600;
       letter-spacing: .14em;
       text-transform: uppercase;
-      color: rgba(42,38,34,.78);
+      color: var(--wine);
       font-size: 1.05rem;
     }
 
@@ -248,33 +253,39 @@
       max-width: 640px;
       font-size: 1.25rem;
       line-height: 2.05;
-      color: rgba(42,38,34,.86);
+      color: rgba(42,36,34,.86);
+    }
+
+    .family-label{
+      color: var(--olive);
+      font-weight: 600;
+      letter-spacing: .04em;
     }
 
     .soft{
-      margin-top: 6px;
+      margin-top: 10px;
       font-size: 1.08rem;
       font-style: italic;
-      color: rgba(42,38,34,.62);
+      color: rgba(42,36,34,.62);
       line-height: 1.8;
     }
 
-    /* Map frame like screenshot */
     .map-frame{
       width: min(760px, 92%);
       margin: 14px auto 0;
-      border: 2px solid var(--gold3);
+      border: 2px solid var(--wine3);
       border-radius: 14px;
       overflow:hidden;
-      background: rgba(0,0,0,.02);
+      background: rgba(123,18,50,.03);
       position: relative;
     }
+
     .map-embed{
       width:100%;
       height: 240px;
       border:0;
       display:block;
-      filter: saturate(.92) contrast(1.02);
+      filter: saturate(.90) contrast(1.02);
     }
 
     .map-button{
@@ -285,28 +296,30 @@
       display:inline-flex;
       align-items:center;
       gap: 10px;
-      background: rgba(251,247,241,.92);
-      border: 1px solid rgba(42,38,34,.20);
+      background: rgba(251,247,241,.94);
+      border: 1px solid rgba(123,18,50,.26);
       border-radius: 999px;
       padding: 10px 16px;
       font-family: var(--sans);
       font-size: .95rem;
-      color: rgba(42,38,34,.82);
+      color: var(--wine);
       text-decoration:none;
       box-shadow: 0 10px 25px rgba(0,0,0,.14);
       backdrop-filter: blur(6px);
     }
+
     .pin{
-      width: 16px; height:16px; opacity:.85;
+      width: 16px;
+      height:16px;
+      opacity:.90;
     }
 
-    /* RSVP (same logic, styled to match) */
     .rsvp-note{
       margin: 0 auto;
       max-width: 66ch;
       font-size: 1.08rem;
       line-height: 1.85;
-      color: rgba(42,38,34,.70);
+      color: rgba(42,36,34,.70);
     }
 
     .field{
@@ -314,27 +327,36 @@
       width: min(520px, 92%);
       text-align:left;
     }
+
     label{
       display:block;
       font-family: var(--sans);
       font-size: .86rem;
       letter-spacing: .06em;
-      color: rgba(42,38,34,.60);
+      color: rgba(42,36,34,.60);
       margin: 0 0 6px;
     }
+
     input[type="text"], select{
       width: 100%;
       padding: 12px 12px;
-      border: 1px solid rgba(42,38,34,.18);
+      border: 1px solid rgba(123,18,50,.22);
       border-radius: 12px;
-      background: rgba(251,247,241,.92);
+      background: rgba(251,247,241,.94);
       outline:none;
       font-size: 1rem;
-      color: rgba(42,38,34,.90);
+      color: rgba(42,36,34,.90);
       font-family: var(--sans);
     }
-    input::placeholder{ color: rgba(42,38,34,.45); }
-    select:invalid{ color: rgba(42,38,34,.45); }
+
+    input[type="text"]:focus,
+    select:focus{
+      border-color: rgba(123,18,50,.55);
+      box-shadow: 0 0 0 3px rgba(123,18,50,.08);
+    }
+
+    input::placeholder{ color: rgba(42,36,34,.45); }
+    select:invalid{ color: rgba(42,36,34,.45); }
 
     .actions{
       width: min(520px, 92%);
@@ -344,29 +366,38 @@
       justify-content:center;
       flex-wrap:wrap;
     }
+
     button{
       appearance:none;
-      border: 1px solid rgba(42,38,34,.20);
+      border: 1px solid rgba(123,18,50,.34);
       background: transparent;
-      color: rgba(42,38,34,.86);
+      color: var(--wine);
       padding: 12px 16px;
       border-radius: 999px;
       cursor:pointer;
-      transition: transform .06s ease, background .22s ease, opacity .2s ease;
+      transition: transform .06s ease, background .22s ease, opacity .2s ease, color .22s ease;
       font-size: 1rem;
       font-family: var(--sans);
       min-width: 210px;
     }
-    button:hover{ background: rgba(42,38,34,.06); }
+
+    button:hover{
+      background: rgba(123,18,50,.08);
+    }
+
     button:active{ transform: translateY(1px); }
-    button[disabled]{ opacity:.55; cursor:not-allowed; }
+
+    button[disabled]{
+      opacity:.55;
+      cursor:not-allowed;
+    }
 
     .message{
       width: min(560px, 92%);
       margin: 14px auto 0;
       padding: 12px 14px;
-      border-top: 1px solid rgba(176,138,106,.35);
-      color: rgba(42,38,34,.82);
+      border-top: 1px solid rgba(123,18,50,.32);
+      color: rgba(42,36,34,.82);
       line-height: 1.9;
       font-family: var(--sans);
       display:none;
@@ -375,11 +406,10 @@
     footer{
       margin-top: 26px;
       font-size: 1.18rem;
-      color: rgba(42,38,34,.72);
+      color: rgba(42,36,34,.72);
       font-style: italic;
     }
 
-    /* responsive padding */
     @media (min-width: 860px){
       .content{ padding: 62px 46px 58px; }
     }
@@ -401,8 +431,8 @@
         <div class="mini-line" aria-hidden="true">
           <span></span>
           <svg width="26" height="10" viewBox="0 0 26 10" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 5h10M25 5H15" stroke="#b08a6a" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M13 1l1.2 2.6L17 5l-2.8 1.4L13 9l-1.2-2.6L9 5l2.8-1.4L13 1z" fill="#b08a6a"/>
+            <path d="M1 5h10M25 5H15" stroke="#7b1232" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M13 1l1.2 2.6L17 5l-2.8 1.4L13 9l-1.2-2.6L9 5l2.8-1.4L13 1z" fill="#7b1232"/>
           </svg>
           <span></span>
         </div>
@@ -413,7 +443,7 @@
         <div class="divider" aria-hidden="true">
           <span></span>
           <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path fill="#b08a6a" d="M12 2l1.6 5.2L19 9l-5.4 1.8L12 16l-1.6-5.2L5 9l5.4-1.8L12 2z"/>
+            <path fill="#7b1232" d="M12 2l1.6 5.2L19 9l-5.4 1.8L12 16l-1.6-5.2L5 9l5.4-1.8L12 2z"/>
           </svg>
           <span></span>
         </div>
@@ -426,7 +456,7 @@
         <div class="divider" aria-hidden="true">
           <span></span>
           <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path fill="#b08a6a" d="M12 2l1.6 5.2L19 9l-5.4 1.8L12 16l-1.6-5.2L5 9l5.4-1.8L12 2z"/>
+            <path fill="#7b1232" d="M12 2l1.6 5.2L19 9l-5.4 1.8L12 16l-1.6-5.2L5 9l5.4-1.8L12 2z"/>
           </svg>
           <span></span>
         </div>
@@ -434,18 +464,24 @@
         <section>
           <div class="title">Οι Οικογένειες</div>
           <div class="lines">
-          <div>Κωνσταντίνα Πατσούρη · Ιωάννης Κοκκολιός</div>
-          <div>Ουράν Μετόσι · Λιντίτα Μετόσι</div>
+            <div class="family-label">Οικογένεια Νύφης</div>
+            <div>Κωνσταντίνα Πατσούρη</div>
+            <div>Ιωάννης Κοκκολιός</div>
 
-            
-          <div class="soft">με τιμή σας προσκαλούν στον γάμο των παιδιών τους</div>
-  </div>
-</section>
+            <br>
+
+            <div class="family-label">Οικογένεια Γαμπρού</div>
+            <div>Ουράν Μετόσι</div>
+            <div>Λιντίτα Μετόσι</div>
+
+            <div class="soft">με τιμή σας προσκαλούν στον γάμο των παιδιών τους</div>
+          </div>
+        </section>
 
         <div class="divider" aria-hidden="true">
           <span></span>
           <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path fill="#b08a6a" d="M12 2l1.6 5.2L19 9l-5.4 1.8L12 16l-1.6-5.2L5 9l5.4-1.8L12 2z"/>
+            <path fill="#7b1232" d="M12 2l1.6 5.2L19 9l-5.4 1.8L12 16l-1.6-5.2L5 9l5.4-1.8L12 2z"/>
           </svg>
           <span></span>
         </div>
@@ -453,14 +489,15 @@
         <section>
           <div class="title">Κουμπάροι</div>
           <div class="lines">
-            <div>Σταματίνα Φλεριανού & Δημήτρης Ικαράι</div>
+            <div>Σταματίνα Φλεριανού</div>
+            <div>Δημήτρης Ικαράι</div>
           </div>
         </section>
 
         <div class="divider" aria-hidden="true">
           <span></span>
           <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path fill="#b08a6a" d="M12 2l1.6 5.2L19 9l-5.4 1.8L12 16l-1.6-5.2L5 9l5.4-1.8L12 2z"/>
+            <path fill="#7b1232" d="M12 2l1.6 5.2L19 9l-5.4 1.8L12 16l-1.6-5.2L5 9l5.4-1.8L12 2z"/>
           </svg>
           <span></span>
         </div>
@@ -483,7 +520,7 @@
 
             <a class="map-button" href="https://maps.app.goo.gl/mxWEGeXatXpWLC759" target="_blank" rel="noopener">
               <svg class="pin" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path fill="#6b4f3e" d="M12 2c-3.9 0-7 3.1-7 7 0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/>
+                <path fill="#7b1232" d="M12 2c-3.9 0-7 3.1-7 7 0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/>
               </svg>
               Προβολή τοποθεσίας στον Χάρτη
             </a>
@@ -493,7 +530,7 @@
         <div class="divider" aria-hidden="true">
           <span></span>
           <svg class="star" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path fill="#b08a6a" d="M12 2l1.6 5.2L19 9l-5.4 1.8L12 16l-1.6-5.2L5 9l5.4-1.8L12 2z"/>
+            <path fill="#7b1232" d="M12 2l1.6 5.2L19 9l-5.4 1.8L12 16l-1.6-5.2L5 9l5.4-1.8L12 2z"/>
           </svg>
           <span></span>
         </div>
@@ -558,6 +595,7 @@
         lockButtons(false);
         return;
       }
+
       if (answer.includes('Ναι') && guests === '') {
         showMsg('Παρακαλώ επίλεξε πόσα άτομα θα έρθετε.');
         lockButtons(false);
@@ -599,4 +637,6 @@
   </script>
 </body>
 </html>
+
+
 
