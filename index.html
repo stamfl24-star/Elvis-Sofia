@@ -211,11 +211,32 @@
     }
 
     .mono-text{
-      font-family:var(--serif);
-      font-weight:700;
-      font-size:28px;
+      position:relative;
+      width:70px;
+      height:70px;
+      font-family:var(--script);
+      font-weight:400;
       color:var(--wine);
-      letter-spacing:.04em;
+    }
+
+    .mono-e,
+    .mono-s{
+      position:absolute;
+      line-height:1;
+    }
+
+    .mono-e{
+      font-size:52px;
+      left:6px;
+      top:0px;
+      color:var(--wine-dark);
+    }
+
+    .mono-s{
+      font-size:54px;
+      right:4px;
+      bottom:-4px;
+      color:var(--wine);
     }
 
     .mini-line,
@@ -543,9 +564,10 @@
 
       <div class="content">
 
-        <div class="monogram" aria-label="Monogram">
-          <div class="mono-text">E·S</div>
-        </div>
+    <div class="mono-text monogram-script">
+      <span class="mono-e">E</span>
+      <span class="mono-s">S</span>
+    </div>
 
         <div class="mini-line" aria-hidden="true">
           <span></span>
